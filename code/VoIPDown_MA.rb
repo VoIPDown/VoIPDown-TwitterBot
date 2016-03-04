@@ -22,7 +22,7 @@ tweets = [
 twitter_search_string = "icann OR icann55 OR #icann55 OR isoc OR anrt"
 
 # Remove this to send out tweets.
-# debug_mode
+debug_mode
 
 # Remove this to update the db.
 # no_update
