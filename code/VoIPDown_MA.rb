@@ -14,7 +14,7 @@ tweets = [
   "Hi #USER#! #{days_blocked} days ago ANRT (host of #ICANN55) blocked all VoIP comm in Morocco. Learn more at http://voipdown.com #VoIPDown"
 ]
 
-twitter_search_string = "icann OR icann55 OR #icann55 OR anrt"
+twitter_search_string = "#icann55 OR icann55"
 
 # Remove this to send out tweets.
 # debug_mode
