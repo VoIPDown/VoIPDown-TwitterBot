@@ -1,0 +1,9 @@
+version: '2'
+services:
+  bot:
+    env_file:
+      - .env
+    build: .
+    image: zakelfassi/voipdowntwitterbot_bot
+    volumes:
+     - ./code:/code
