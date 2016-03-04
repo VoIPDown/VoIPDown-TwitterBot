@@ -36,6 +36,7 @@ begin
     search twitter_search_string do |tweet|
       reply tweets.sample, tweet
       # follow tweet.user
+      sleep 66
     end
 
     # Explicitly update our config.
