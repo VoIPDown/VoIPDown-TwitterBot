@@ -7,11 +7,6 @@ require 'date'
 block_date   = Date.new(2016,1,5)
 days_blocked = (Date.today - block_date).to_i
 
-consumer_key    ENV['VOIPDOWN_TWITTER_CONSUMER_KEY']
-consumer_secret ENV['VOIPDOWN_TWITTER_CONSUMER_SECRET']
-secret          ENV['VOIPDOWN_TWITTER_SECRET']
-token           ENV['VOIPDOWN_TWITTER_TOKEN']
-
 tweets = [
   "Hey #USER#! did you know that VoIP was blocked by ANRT (host of #ICANN55) #{days_blocked} days ago? Learn more at http://voipdown.com #VoIPDown",
   "#USER#, did you know that ALL VoIP comm were banned by ANRT (host of #ICANN55) #{days_blocked} days ago? Learn more at http://voipdown.com",
@@ -19,10 +14,10 @@ tweets = [
   "Hi #USER#! #{days_blocked} days ago ANRT (host of #ICANN55) blocked all VoIP comm in Morocco. Learn more at http://voipdown.com #VoIPDown"
 ]
 
-twitter_search_string = "icann OR icann55 OR #icann55 OR isoc OR anrt"
+twitter_search_string = "icann OR icann55 OR #icann55 OR anrt"
 
 # Remove this to send out tweets.
-debug_mode
+# debug_mode
 
 # Remove this to update the db.
 # no_update
@@ -40,7 +35,7 @@ begin
   loop do
     search twitter_search_string do |tweet|
       reply tweets.sample, tweet
-      follow tweet.user
+      # follow tweet.user
     end
 
     # Explicitly update our config.
