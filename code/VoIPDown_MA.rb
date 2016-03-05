@@ -37,14 +37,15 @@ verbose
 blacklist "WALOU"
 
 # Exclude from search.
-exclude "spammer", "junk"
+exclude "spammer", "junk", "RT"
 
 begin
   loop do
     search twitter_search_string do |tweet|
+      sleep rand(30..120)
       reply tweets.sample, tweet
       # follow tweet.user
-      sleep 66
+      sleep rand(180..600)
     end
 
     # Explicitly update our config.

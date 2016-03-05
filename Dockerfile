@@ -6,4 +6,4 @@ WORKDIR /code
 
 RUN gem install chatterbot
 
-CMD ruby -W0 VoIPDown_MA.rb
+CMD ruby VoIPDown_MA.rb
