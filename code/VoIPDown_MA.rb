@@ -3,6 +3,7 @@
 require 'rubygems'
 require 'chatterbot/dsl'
 require 'date'
+require 'yaml'
 
 block_date   = Date.new(2016,1,5)
 days_blocked = (Date.today - block_date).to_i
@@ -39,19 +40,33 @@ blacklist "WALOU"
 # Exclude from search.
 exclude "spammer", "junk", "RT"
 
+def is_new_user(user)
+  users = YAML.load_file('users.yml')
+  exists = users.include?(user)
+
+  if !exists
+    puts "User #{user} is new. Pushing to YAML before sending tweet..."
+    users.push(user)
+
+    File.open("users.yml", 'w') { |f| YAML.dump(users, f) }
+  end
+
+  return exists
+end
+
 begin
   loop do
     search twitter_search_string do |tweet|
-      sleep rand(30..120)
-      reply tweets.sample, tweet
+      # Check if user hasn't already been contacted.
+      reply(tweets.sample, tweet) if is_new_user(tweet_user(tweet))
       # follow tweet.user
-      sleep rand(180..600)
+      sleep rand(300..1800)
     end
 
     # Explicitly update our config.
     update_config
 
-    sleep 60
+    sleep rand(300..1800)
   end
 rescue Twitter::Error::TooManyRequests => error
   puts "Rate limit exceeded: #{error}, sleeping for #{error.rate_limit.reset_in}"
