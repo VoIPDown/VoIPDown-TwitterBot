@@ -51,7 +51,7 @@ def is_new_user(user)
     File.open("users.yml", 'w') { |f| YAML.dump(users, f) }
   end
 
-  return exists
+  return !exists
 end
 
 begin
